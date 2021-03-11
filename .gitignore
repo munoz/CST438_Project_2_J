@@ -32,6 +32,7 @@ local.properties
 *.class
 
 # Generated files
+venv/
 bin/
 gen/
 out/
