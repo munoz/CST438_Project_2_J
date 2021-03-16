@@ -46,6 +46,11 @@
         background-color: #ffae19;
         border-color: #e59400;
     }
+
+    #viewUsers {
+        width: 100%;
+        font-size: 16px;
+    }
     
 </style>
 
@@ -59,18 +64,21 @@
 
     <div class="todo-list">
 
-    {% for task in tasks %}
-        <div class="item-row">
-            <a class="btn btn-sm btn-info" href="{% url 'update_task' task.id %}">Update</a>
-            <a class="btn btn-sm btn-danger" href="{% url 'delete' task.id %}">Delete</a>
-            
-            {% if task.complete == True %}
-            <strike>{{task}}</strike>
-            {% else %}
-            <span>{{task}}</span>
-            {% endif %}
+        {% for task in tasks %}
+            <div class="item-row">
+                <a class="btn btn-sm btn-info" href="{% url 'update_task' task.id %}">Update</a>
+                <a class="btn btn-sm btn-danger" href="{% url 'delete' task.id %}">Delete</a>
+                
+                {% if task.complete == True %}
+                <strike>{{task}}</strike>
+                {% else %}
+                <span>{{task}}</span>
+                {% endif %}
 
-        </div>
-    {% endfor %}
+            </div>
+        {% endfor %}
     </div>
+
+    <br>
+    <a id="viewUsers" class="btn btn-sm btn-info" href="{% url 'view_users' %}">View all users</a>
 </div>
