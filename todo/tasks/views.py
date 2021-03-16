@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib.auth.models import User
 
 from .models import *
 from .forms import *
@@ -44,3 +45,8 @@ def deleteTask(request, pk):
         
     context = {'item':item}
     return render(request, 'tasks/delete.html', context)
+
+def showUsername(request):
+    displayusername = User.objects.all()
+    context = {'displayusername':displayusername}
+    return render(request, 'tasks/users.html', context)

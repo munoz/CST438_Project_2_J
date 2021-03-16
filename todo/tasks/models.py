@@ -9,3 +9,6 @@ class Task(models.Model):
 
     def __str__(self):
         return self.title
+
+class displayusername(models.Model):
+    username = models.CharField(max_length=100)
