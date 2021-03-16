@@ -1,16 +1,47 @@
 <!--File created by Lily Joh-->
 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
 <style>
+
+    body{
+        background-color: #638CB8;
+        text-align: center;
+    }
+
     .usernames {
         font-size: 20px;
     }
+
+    .item-row{
+        background-color: #906abd;
+        margin: 10px;
+        padding: 20px;
+        border-radius: 3px;
+        color: #fff;
+        font-size: 16px;
+        box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75);
+    }
+
+    .center-column{
+        width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 3px;
+        box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+    }
+
 </style>
 
-<center>
+<div class="center-column">
     <div class="usernames">
         <p>-- Usernames --</p>
+        
         {% for username in displayusername %}
-        {{username}}
+        <div class="item-row">
+            {{username}}
+        </div>
         {% endfor %}
     </div>
-</center>
+</div>
