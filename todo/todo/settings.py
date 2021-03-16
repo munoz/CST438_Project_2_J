@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 
+import mimetypes
+mimetypes.add_type("text/css", ".css", True)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,7 +29,7 @@ SECRET_KEY = '24@3+r*u2zqqz=cn8p6wsu+fq(7wl$&*kcl76guu^^z_bsjbpm'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['wishlist-app-group-j.herokuapp.com','0.0.0.0' ]
+ALLOWED_HOSTS = ['wishlist-app-group-j.herokuapp.com','0.0.0.0','127.0.0.1',]
 
 
 # Application definition
@@ -57,7 +60,7 @@ ROOT_URLCONF = 'todo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
