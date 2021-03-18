@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECTRET_KEY', '24@3+r*u2zqqz=cn8p6wsu+fq(7wl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['wishlist-app-group-j.herokuapp.com','0.0.0.0','127.0.0.1',]
+ALLOWED_HOSTS = ['wishlist-app-group-j.herokuapp.com','0.0.0.0','127.0.0.1','.herokuapp.com']
 
 
 # Application definition
@@ -88,6 +88,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+django_heroku.settings(locals())
 
 #db_from_env = dj_database_url.config(conn_max_age=500)
 #DATABASES['default'].update(db_from_env)
