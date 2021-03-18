@@ -1,10 +1,56 @@
 <!--File created by Lily Joh-->
 
-<h3>Update Task</h3>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-<form method="POST" action="">
-    {% csrf_token %}
+<style>
 
-    {{form}}
-    <input type="submit" name="Update Task">
-</form>
+    #form-container input {
+        height: 5vh;
+    }
+
+    h3{
+        text-align: center;
+    }
+    
+    body{
+        background-color: #638CB8;
+    }
+
+    input{
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+    }
+
+    input::placeholder {
+        color: #d3d3d3;
+    }
+
+    .submit{
+        background-color: #6BA3E8;
+    }
+
+    .center-column{
+        width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 3px;
+        box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+    }
+    
+</style>
+
+<div class="center-column">
+    <h3>Update Task</h3>
+    <br>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div id="form-container">
+            {{form}}
+        </div>
+        <input class="btn btn-info" type="submit" name="Update Task">
+    </form>
+</div>
