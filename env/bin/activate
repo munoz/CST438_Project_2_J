@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/paribeshneupane/Desktop/csumb/spring2021/cst438/Project_2/CST438_Project_2_J/env"
+VIRTUAL_ENV="/Users/yelinjoh/Documents/GitHub/CST438_Project_2_J/env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
