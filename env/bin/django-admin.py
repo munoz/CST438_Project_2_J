@@ -1,4 +1,4 @@
-#!/Users/yelinjoh/Documents/GitHub/CST438_Project_2_J/env/bin/python3
+#!/Users/paribeshneupane/Desktop/csumb/spring2021/cst438/Project_2/CST438_Project_2_J/env/bin/python3
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 
