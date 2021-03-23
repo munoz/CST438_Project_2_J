@@ -1,0 +1,12 @@
+<!--File created by Lily Joh-->
+{% extends 'tasks/base.html' %}
+
+{% block title %}
+View
+{% endblock %}
+
+{% block content %}
+    {% for wl in user.wishlist.all %}
+        <p><a href="/{{wl.id}}">{{wl.name}}</a></p>
+    {% endfor %}
+{% endblock %}

@@ -49,7 +49,7 @@ def deleteTask(request, pk):
 def showUsername(request):
     displayusername = User.objects.all()
     context = {'displayusername':displayusername}
-    return render(request, 'tasks/users.html', context)
+    return render(request, 'tasks/view_users.html', context)
 
 def create(request):
     if request.method == 'POST':
@@ -67,3 +67,6 @@ def create(request):
 
     context = {'form':form}
     return render(request, 'tasks/create.html', context)
+
+def view(response):
+    return render(response, 'tasks/view_lists.html', {})
