@@ -26,7 +26,7 @@ SECRET_KEY = '24@3+r*u2zqqz=cn8p6wsu+fq(7wl$&*kcl76guu^^z_bsjbpm'
 # SECURI WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['wishlist-app-group-j.herokuapp.com','0.0.0.0' ]
+ALLOWED_HOSTS = ['wishlist-app-group-j.herokuapp.com','0.0.0.0','127.0.0.1' ]
 
 
 # Application definition
@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'tasks',
+    'users',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +59,7 @@ ROOT_URLCONF = 'todo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [os.path.join(BASE_DIR,'templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -126,3 +128,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = 'list'
+LOGIN_URL = 'login'
