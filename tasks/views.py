@@ -52,13 +52,18 @@ def showUsername(request):
     return render(request, 'tasks/users.html', context)
 
 def create(request):
-    form = ListForm()
-
     if request.method == 'POST':
         form = ListForm(request.POST)
+
         if form.is_valid():
-            form.save()
+            n = form.cleaned_data["name"]
+            w = WishList(name=n)
+            w.save()
+            response.user.wishlist.add(w)
         return redirect('/')
+
+    else:
+        form = ListForm()
 
     context = {'form':form}
     return render(request, 'tasks/create.html', context)
