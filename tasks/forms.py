@@ -10,3 +10,10 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = '__all__'
+
+class ListForm(forms.ModelForm):
+    title = forms.CharField(widget = forms.TextInput(attrs={'placeholder':'Add new list...'}))
+
+    class Meta:
+        model = Task
+        fields = '__all__'

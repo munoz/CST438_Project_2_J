@@ -50,3 +50,15 @@ def showUsername(request):
     displayusername = User.objects.all()
     context = {'displayusername':displayusername}
     return render(request, 'tasks/users.html', context)
+
+def create(request):
+    form = ListForm()
+
+    if request.method == 'POST':
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('/')
+
+    context = {'form':form}
+    return render(request, 'tasks/create.html', context)
