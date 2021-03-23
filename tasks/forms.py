@@ -12,8 +12,8 @@ class TaskForm(forms.ModelForm):
         fields = '__all__'
 
 class ListForm(forms.ModelForm):
-    title = forms.CharField(widget = forms.TextInput(attrs={'placeholder':'Add new list...'}))
+    name = forms.CharField(widget = forms.TextInput(attrs={'placeholder':'Add new list...'}))
 
     class Meta:
-        model = Task
+        model = WishList
         fields = '__all__'

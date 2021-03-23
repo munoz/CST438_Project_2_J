@@ -4,8 +4,9 @@
 {% block content %}
     <div class="center-column">
         <form method="POST" action="/">
-            {% csrf_token %} {{form.title}}
-            <input class="btn btn-info" type="submit" name="Create Task" />
+            {% csrf_token %}
+            {{form.name}}
+            <input class="btn btn-info" type="submit" name="Create WishList" />
         </form>
     </div>
 

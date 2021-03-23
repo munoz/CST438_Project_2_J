@@ -55,7 +55,7 @@ def create(request):
     form = ListForm()
 
     if request.method == 'POST':
-        form = TaskForm(request.POST)
+        form = ListForm(request.POST)
         if form.is_valid():
             form.save()
         return redirect('/')

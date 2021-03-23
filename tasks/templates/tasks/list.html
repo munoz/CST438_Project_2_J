@@ -12,12 +12,8 @@
     <div class="todo-list">
       {% for task in tasks %}
       <div class="item-row">
-        <a class="btn btn-sm btn-info" href="{% url 'update_task' task.id %}"
-          >Update</a
-        >
-        <a class="btn btn-sm btn-danger" href="{% url 'delete' task.id %}"
-          >Delete</a
-        >
+        <a class="btn btn-sm btn-info" href="{% url 'update_task' task.id %}">Update</a>
+        <a class="btn btn-sm btn-danger" href="{% url 'delete' task.id %}">Delete</a>
 
         {% if task.complete == True %}
         <strike>{{task}}</strike>
@@ -27,10 +23,5 @@
       </div>
       {% endfor %}
     </div>
-
-    <br />
-    <a id="viewUsers" class="btn btn-sm btn-info" href="{% url 'view_users' %}"
-      >View all users</a
-    >
   </div>
 {% endblock content %}
