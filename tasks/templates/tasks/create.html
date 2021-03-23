@@ -1,0 +1,13 @@
+<!--File created by Lily Joh-->
+{% extends 'tasks/base.html' %}
+
+{% block content %}
+    <div class="center-column">
+        <form method="POST" action="/create/">
+            {% csrf_token %}
+            {{form.name}}
+            <input class="btn btn-info" type="submit" name="Create WishList" />
+        </form>
+    </div>
+
+{% endblock content %}
