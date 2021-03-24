@@ -83,6 +83,10 @@ def viewUsers(request):
     return render(request, 'tasks/viewUsers.html', context)
 
 @login_required
+def admin(request):
+    return render(request, 'tasks/admin.html')
+
+@login_required
 def createList(response):
     if response.method == 'POST':
         form = ListForm(response.POST)

@@ -26,13 +26,14 @@
         <a href="/createList">Create a wishlist</a>
         <br>
         <a href="/viewLists">My wishlists</a>
-        <br>
-        <a href="/viewUsers">View users</a>
+        <!-- <br>
+        <a href="/viewUsers">View users</a> -->
       </li>
      </ul>
 
       <div class = "navbar-nav" style="text-align: right;">
       	{% if user.is_authenticated%}
+          <a class ="nav-item nav-link" href = "{% url 'admin' %}">Admin</a>
       		<a class ="nav-item nav-link" href = "{% url 'profile' %}">Profile</a>
       		<a class ="nav-item nav-link" href = "{% url 'logout' %}">Logout</a>
       	{% else %}
