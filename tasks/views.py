@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 from .models import *
 from .forms import *
@@ -21,6 +22,7 @@ def index(request):
     context = {'tasks':tasks, 'form':form}
     return render(request, 'tasks/list.html', context)
 
+@login_required
 def viewItems(response, id):
     ls = WishList.objects.get(id=id)
 
@@ -41,14 +43,11 @@ def viewItems(response, id):
                 ls.task_set.create(text=txt, complete=False)
             else:
                 print("invalid")
-    #     form = TaskForm(request.POST)
-    #     if form.is_valid():
-    #         form.save()
-    #     return redirect('/')
 
     context = {'ls':ls, 'form':form}
     return render(response, "tasks/viewItems.html", context)
 
+@login_required
 def updateItem(request, pk):
     task = Task.objects.get(id=pk)
 
@@ -58,29 +57,32 @@ def updateItem(request, pk):
         form = TaskForm(request.POST, instance=task)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('/viewLists')
 
     context = {'form':form}
 
     return render(request, 'tasks/updateItem.html', context)
 
+@login_required
 def deleteItem(request, pk):
     item = Task.objects.get(id=pk)
 
     if request.method == 'POST':
         item.delete()
-        return redirect('/')
+        return redirect('/viewLists')
         
     context = {'item':item}
     return render(request, 'tasks/deleteItem.html', context)
 
+@login_required
 def viewUsers(request):
     displayusername = User.objects.all()
     context = {'displayusername':displayusername}
     return render(request, 'tasks/viewUsers.html', context)
 
+@login_required
 def createList(response):
-    if request.method == 'POST':
+    if response.method == 'POST':
         form = ListForm(response.POST)
 
         if form.is_valid():
@@ -94,8 +96,9 @@ def createList(response):
         form = ListForm()
 
     context = {'form':form}
-    return render(request, 'tasks/createList.html', context)
+    return render(response, 'tasks/createList.html', context)
 
+@login_required
 def viewLists(response):
     wishlist = WishList.objects
     return render(response, 'tasks/viewLists.html', {'wishlist': wishlist})
