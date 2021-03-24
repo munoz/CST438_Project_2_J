@@ -34,6 +34,13 @@
 
 </style>
 
+{% extends 'tasks/base.html' %}
+
+{% block title %}
+View Users
+{% endblock %}
+
+{% block content %}
 <div class="center-column">
     <div class="usernames">
         <h3> Usernames </h3>
@@ -46,3 +53,4 @@
         {% endfor %}
     </div>
 </div>
+{% endblock %}

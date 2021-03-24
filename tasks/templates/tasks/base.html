@@ -14,7 +14,7 @@
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="{% url 'list' %}"> Your WishList</a>
+  <a class="navbar-brand" href="{% url 'list' %}">Jiminy Wishlist</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -23,11 +23,11 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="{% url 'list' %}">Home <span class="sr-only">(current)</span></a>
-        <a href="/createList">Create a list</a>
+        <a href="/createList">Create a wishlist</a>
         <br>
-        <a href="/viewLists">View lists</a>
+        <a href="/viewLists">My wishlists</a>
         <br>
-        <a href="/viewUsers">View all users</a>
+        <a href="/viewUsers">View users</a>
       </li>
      </ul>
 
@@ -51,7 +51,7 @@
 	<div role ="main" class= "container">
 		<div class="row">
 			<div class="col-md-8">
-				<h1 style="text-align: center;">Your Wishlist</h1>
+				<!-- <h1 style="text-align: center;">Your Wishlist</h1> -->
 				<div class="card" style="">
 					{% if messages %}
 						{%for message in messages %}

@@ -2,12 +2,14 @@
 {% extends 'tasks/base.html' %}
 
 {% block title %}
-View
+View Lists
 {% endblock %}
 
 {% load crispy_forms_tags %}
 {% block content %}
+    <h1>My wishlists</h1>
+    <br>
     {% for wl in user.wishlist.all %}
-        <p><a href="/{{wl.id}}">{{wl.name}}</a></p>
+        <p><a href="/viewItems/{{wl.id}}">{{wl.name}}</a></p>
     {% endfor %}
 {% endblock %}

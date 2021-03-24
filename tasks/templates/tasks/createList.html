@@ -3,7 +3,9 @@
 
 {% block content %}
     <div class="center-column">
-        <form method="POST" action="/createList">
+        <h1>Create a wishlist</h1>
+        <br>
+        <form method="POST" action="/viewLists">
             {% csrf_token %}
             {{form.name}}
             <input class="btn btn-info" type="submit" name="Create WishList" />
