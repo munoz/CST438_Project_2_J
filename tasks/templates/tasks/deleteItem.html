@@ -50,11 +50,14 @@
   }
 </style>
 
+{% extends 'tasks/base.html' %}
+
+{% block content %}
 <div class="center-column">
   <h3>Are you sure you want to delete "{{item}}"?</h3>
   <br /><br />
 
-  <a class="btn btn-sm btn-info" href="{% url 'list' %}">Cancel</a>
+  <a class="btn btn-sm btn-info" href="/viewLists">Cancel</a>
   <br /><br />
 
   <form method="POST" action="">
@@ -62,3 +65,4 @@
     <input class="btn btn-info" type="submit" name="Confirm" />
   </form>
 </div>
+{% endblock %}

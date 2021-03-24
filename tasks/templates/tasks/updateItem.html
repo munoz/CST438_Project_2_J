@@ -42,8 +42,11 @@
     
 </style>
 
+{% extends 'tasks/base.html' %}
+
+{% block content %}
 <div class="center-column">
-    <h3>Update Task</h3>
+    <h3>Update Item</h3>
     <br>
 
     <form method="POST" action="">
@@ -54,3 +57,4 @@
         <input class="btn btn-info" type="submit" name="Update Task">
     </form>
 </div>
+{% endblock %}
