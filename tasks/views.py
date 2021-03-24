@@ -21,6 +21,34 @@ def index(request):
     context = {'tasks':tasks, 'form':form}
     return render(request, 'tasks/list.html', context)
 
+def view_items(response, id):
+    ls = WishList.objects.get(id=id)
+
+    form = TaskForm()
+
+    if response.method == 'POST':
+        if response.POST.get("save"):
+            for item in ls.task_set.all():
+                if response.POST.get("c" + str(item.id)) == "clicked":
+                    item.complete = True
+                else:
+                    item.complete = False
+                item.save()
+        elif response.POST.get("newItem"):
+            txt = response.POST.get("new")
+            
+            if len(txt) > 2:
+                ls.item_set.create(text=txt, complete=False)
+            else:
+                print("invalid")
+    #     form = TaskForm(request.POST)
+    #     if form.is_valid():
+    #         form.save()
+    #     return redirect('/')
+
+    context = {'ls':ls, 'form':form}
+    return render(response, "tasks/view_items.html", context)
+
 def updateTask(request, pk):
     task = Task.objects.get(id=pk)
 
@@ -51,16 +79,16 @@ def showUsername(request):
     context = {'displayusername':displayusername}
     return render(request, 'tasks/view_users.html', context)
 
-def create(request):
+def create(response):
     if request.method == 'POST':
-        form = ListForm(request.POST)
+        form = ListForm(response.POST)
 
         if form.is_valid():
             n = form.cleaned_data["name"]
             w = WishList(name=n)
             w.save()
             response.user.wishlist.add(w)
-        return redirect('/')
+        return HttpResponseRedirect("/%i" %w.id)
 
     else:
         form = ListForm()
@@ -69,4 +97,5 @@ def create(request):
     return render(request, 'tasks/create.html', context)
 
 def view(response):
-    return render(response, 'tasks/view_lists.html', {})
+    wishlist = WishList.objects
+    return render(response, 'tasks/view_lists.html', {'wishlist': wishlist})

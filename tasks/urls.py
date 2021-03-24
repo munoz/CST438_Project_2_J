@@ -8,4 +8,5 @@ urlpatterns = [
     path('view_users/', views.showUsername, name="view_users"),
     path('create/', views.create, name="create"),
     path('view_lists/', views.view, name="view"),
+    path("<int:id>", views.view_items, name="view_items"),
 ]

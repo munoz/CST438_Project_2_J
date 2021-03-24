@@ -1,0 +1,30 @@
+<!--File created by Lily Joh-->
+{% extends 'tasks/base.html' %}
+
+{% block title %}View List{% endblock %}
+ 
+{% block content %}
+    <h1>{{ls.name}}</h1>
+
+    <div class="center-column">
+        <form method="POST" action="#">
+        {% csrf_token %} {{form.title}}
+        <input class="btn btn-info" type="submit" name="Create Task" />
+    </form>
+
+    <div class="todo-list">
+      {% for item in ls.task_set.all %}
+      <div class="item-row">
+        <a class="btn btn-sm btn-info" href="{% url 'update_task' item.id %}">Update</a>
+        <a class="btn btn-sm btn-danger" href="{% url 'delete' item.id %}">Delete</a>
+
+        {% if item.complete == True %}
+        <strike>{{item}}</strike>
+        {% else %}
+        <span>{{item}}</span>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock content %}

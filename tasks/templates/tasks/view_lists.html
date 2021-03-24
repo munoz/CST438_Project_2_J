@@ -5,6 +5,7 @@
 View
 {% endblock %}
 
+{% load crispy_forms_tags %}
 {% block content %}
     {% for wl in user.wishlist.all %}
         <p><a href="/{{wl.id}}">{{wl.name}}</a></p>
