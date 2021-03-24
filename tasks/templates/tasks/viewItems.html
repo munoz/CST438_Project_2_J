@@ -15,8 +15,8 @@
     <div class="todo-list">
       {% for item in ls.task_set.all %}
       <div class="item-row">
-        <a class="btn btn-sm btn-info" href="{% url 'update_task' item.id %}">Update</a>
-        <a class="btn btn-sm btn-danger" href="{% url 'delete' item.id %}">Delete</a>
+        <a class="btn btn-sm btn-info" href="{% url 'updateItem' item.id %}">Update</a>
+        <a class="btn btn-sm btn-danger" href="{% url 'deleteItem' item.id %}">Delete</a>
 
         {% if item.complete == True %}
         <strike>{{item}}</strike>

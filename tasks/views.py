@@ -21,7 +21,7 @@ def index(request):
     context = {'tasks':tasks, 'form':form}
     return render(request, 'tasks/list.html', context)
 
-def view_items(response, id):
+def viewItems(response, id):
     ls = WishList.objects.get(id=id)
 
     form = TaskForm()
@@ -38,7 +38,7 @@ def view_items(response, id):
             txt = response.POST.get("new")
             
             if len(txt) > 2:
-                ls.item_set.create(text=txt, complete=False)
+                ls.task_set.create(text=txt, complete=False)
             else:
                 print("invalid")
     #     form = TaskForm(request.POST)
@@ -47,9 +47,9 @@ def view_items(response, id):
     #     return redirect('/')
 
     context = {'ls':ls, 'form':form}
-    return render(response, "tasks/view_items.html", context)
+    return render(response, "tasks/viewItems.html", context)
 
-def updateTask(request, pk):
+def updateItem(request, pk):
     task = Task.objects.get(id=pk)
 
     form = TaskForm(instance=task)
@@ -62,9 +62,9 @@ def updateTask(request, pk):
 
     context = {'form':form}
 
-    return render(request, 'tasks/update_task.html', context)
+    return render(request, 'tasks/updateItem.html', context)
 
-def deleteTask(request, pk):
+def deleteItem(request, pk):
     item = Task.objects.get(id=pk)
 
     if request.method == 'POST':
@@ -72,14 +72,14 @@ def deleteTask(request, pk):
         return redirect('/')
         
     context = {'item':item}
-    return render(request, 'tasks/delete.html', context)
+    return render(request, 'tasks/deleteItem.html', context)
 
-def showUsername(request):
+def viewUsers(request):
     displayusername = User.objects.all()
     context = {'displayusername':displayusername}
-    return render(request, 'tasks/view_users.html', context)
+    return render(request, 'tasks/viewUsers.html', context)
 
-def create(response):
+def createList(response):
     if request.method == 'POST':
         form = ListForm(response.POST)
 
@@ -94,8 +94,8 @@ def create(response):
         form = ListForm()
 
     context = {'form':form}
-    return render(request, 'tasks/create.html', context)
+    return render(request, 'tasks/createList.html', context)
 
-def view(response):
+def viewLists(response):
     wishlist = WishList.objects
-    return render(response, 'tasks/view_lists.html', {'wishlist': wishlist})
+    return render(response, 'tasks/viewLists.html', {'wishlist': wishlist})
