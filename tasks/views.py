@@ -100,6 +100,7 @@ def admin(request):
 
 @login_required
 def createList(response):
+    print(response)
     if response.method == 'POST':
         form = ListForm(response.POST)
 
