@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 
 from .models import *
 from .forms import *
@@ -77,12 +78,23 @@ def deleteItem(request, pk):
     return render(request, 'tasks/deleteItem.html', context)
 
 @login_required
+def deleteUser(request, pk):
+    user = User.objects.get(id=pk)
+
+    if request.method == 'POST':
+        user.delete()
+        return redirect('/viewUsers')
+        
+    context = {'user':user}
+    return render(request, 'tasks/deleteUser.html', context)
+
+@staff_member_required
 def viewUsers(request):
-    displayusername = User.objects.all()
-    context = {'displayusername':displayusername}
+    users = User.objects.all()
+    context = {'users':users}
     return render(request, 'tasks/viewUsers.html', context)
 
-@login_required
+@staff_member_required
 def admin(request):
     return render(request, 'tasks/admin.html')
 
