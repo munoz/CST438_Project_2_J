@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
@@ -100,16 +100,17 @@ def adminPage(request):
 
 @login_required
 def createList(response):
-    print(response)
     if response.method == 'POST':
         form = ListForm(response.POST)
-
+        print(form.errors)
         if form.is_valid():
             n = form.cleaned_data["name"]
+            print(n)
             w = WishList(name=n)
             w.save()
             response.user.wishlist.add(w)
-        return HttpResponseRedirect("/%i" %w.id)
+            
+            return HttpResponseRedirect("/%i" %w.id)
 
     else:
         form = ListForm()

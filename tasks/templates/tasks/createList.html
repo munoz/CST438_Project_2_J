@@ -3,7 +3,7 @@
 <div class="center-column">
   <h1>Create a wishlist</h1>
   <br />
-  <form method="POST" action="/createList">
+  <form method="POST" action="{% url 'createList'%}">
     {% csrf_token %} {{form.name}}
     <input class="btn btn-info" type="submit" name="Create WishList" />
   </form>

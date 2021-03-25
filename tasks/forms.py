@@ -16,4 +16,4 @@ class ListForm(forms.ModelForm):
 
     class Meta:
         model = WishList
-        fields = '__all__'
+        fields = {'name'}
