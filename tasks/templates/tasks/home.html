@@ -3,7 +3,18 @@
 
 {% block content %}
 <div class="center-column">
-    <h1>Jiminy Wishlist</h1>
+    {% if user.is_authenticated%}
+      <a href="/createList">Create a wishlist</a>
+       <br>
+        <a href="/viewLists">My wishlists</a>
+         <!-- <br>
+          <a href="/viewUsers">View users</a> -->
+    {% else%}
+    <h1>Welcome to Jiminy Wishlist</h1>
+    <h2>Register new account to create a Wishlist!</h2>
+    {% endif %}
+
+
     <!-- <br>
     <img src="media/profile_pics/jiminy.png"> -->
 </div>
