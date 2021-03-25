@@ -20,13 +20,15 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <!--(might not be need since site name goes to same location) <a class="nav-link" href="{% url 'list' %}">Home <span class="sr-only">(current)</span></a> -->
-          
+
       </li>
      </ul>
 
       <div class = "navbar-nav" style="text-align: right;">
 	{% if user.is_authenticated%}
+      {% if user.is_staff%}
           <a class ="nav-item nav-link" href = "{% url 'admin' %}">Admin</a>
+      {% endif %}
       		<a class ="nav-item nav-link" href = "{% url 'profile' %}">Profile</a>
       		<a class ="nav-item nav-link" href = "{% url 'logout' %}">Logout</a>
 	{% else %}
