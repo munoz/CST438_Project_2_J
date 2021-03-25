@@ -95,8 +95,8 @@ def viewUsers(request):
     return render(request, 'tasks/viewUsers.html', context)
 
 @staff_member_required
-def admin(request):
-    return render(request, 'tasks/admin.html')
+def adminPage(request):
+    return render(request, 'tasks/adminPage.html')
 
 @login_required
 def createList(response):
