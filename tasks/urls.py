@@ -10,4 +10,5 @@ urlpatterns = [
     path('viewLists/', views.viewLists, name="viewLists"),
     path('viewItems/<int:id>', views.viewItems, name="viewItems"),
     path('admin', views.admin, name="admin"),
+    path('deleteUser/<str:pk>/', views.deleteUser, name="deleteUser"),
 ]

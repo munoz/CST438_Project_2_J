@@ -43,12 +43,14 @@ View Users
 {% block content %}
 <div class="center-column">
     <div class="usernames">
-        <h3> Usernames </h3>
+        <h3> Users </h3>
         <br>
         
-        {% for username in displayusername %}
+        {% for user in users %}
         <div class="item-row">
-            {{username}}
+            {{user}}
+            &nbsp;
+            <a class="btn btn-sm btn-warning" href="{% url 'deleteUser' user.id %}">Delete</a>
         </div>
         {% endfor %}
     </div>
