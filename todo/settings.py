@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '24@3+r*u2zqqz=cn8p6wsu+fq(7wl$&*kcl76guu^^z_bsjbpm'
 
 # SECURI WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['wishlist-app-group-j.herokuapp.com','0.0.0.0','127.0.0.1' ]
 

@@ -9,6 +9,6 @@ urlpatterns = [
     path('createList/', views.createList, name="createList"),
     path('viewLists/', views.viewLists, name="viewLists"),
     path('viewItems/<int:id>', views.viewItems, name="viewItems"),
-    path('admin', views.admin, name="admin"),
+    path('adminPage/', views.adminPage, name="adminPage"),
     path('deleteUser/<str:pk>/', views.deleteUser, name="deleteUser"),
 ]
