@@ -110,7 +110,7 @@ def createList(response):
             w.save()
             response.user.wishlist.add(w)
             
-            return HttpResponseRedirect("/%i" %w.id)
+            return redirect("/createList")
 
     else:
         form = ListForm()
