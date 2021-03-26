@@ -10,6 +10,9 @@ View Lists
     <h1>My wishlists</h1>
     <br>
     {% for wl in user.wishlist.all %}
+    <div class="item-row">
         <p><a href="/viewItems/{{wl.id}}">{{wl.name}}</a></p>
+        <a class="btn btn-sm btn-warning" href="{% url 'deleteList' wl.id %}">Delete</a>
+    </div>
     {% endfor %}
 {% endblock %}
