@@ -280,3 +280,9 @@ fabric.properties
 # End of https://www.toptal.com/developers/gitignore/api/android,androidstudio,macos,windows
 
 pedroEnv/**
+
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
