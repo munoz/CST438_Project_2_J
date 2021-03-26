@@ -41,7 +41,7 @@ def viewItems(response, id):
                 item.save()
         elif response.POST.get("newItem"):
             txt = response.POST.get("new")
-            
+
             if len(txt) > 2:
                 ls.task_set.create(text=txt, complete=False)
             else:
@@ -73,7 +73,7 @@ def deleteItem(request, pk):
     if request.method == 'POST':
         item.delete()
         return redirect('/viewLists')
-        
+
     context = {'item':item}
     return render(request, 'tasks/deleteItem.html', context)
 
@@ -84,7 +84,7 @@ def deleteUser(request, pk):
     if request.method == 'POST':
         user.delete()
         return redirect('/viewUsers')
-        
+
     context = {'user':user}
     return render(request, 'tasks/deleteUser.html', context)
 
@@ -109,7 +109,7 @@ def createList(response):
             w = WishList(name=n)
             w.save()
             response.user.wishlist.add(w)
-            
+
             return redirect("/createList")
 
     else:
@@ -122,3 +122,18 @@ def createList(response):
 def viewLists(response):
     wishlist = WishList.objects
     return render(response, 'tasks/viewLists.html', {'wishlist': wishlist})
+
+@login_required
+def deleteList(request, pk):
+    print('---------- HEY HEY@@ -----------')
+    wishlist = WishList.objects.get(id=pk)
+
+    print(wishlist)
+    # wishlist = Wishlist.objects.get(id=pk)
+
+    if request.method == 'POST':
+        wishlist.delete()
+        return redirect('/viewLists')
+
+    context = {'wishlist':wishlist}
+    return render(request, 'tasks/deleteList.html', context)

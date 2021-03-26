@@ -11,4 +11,5 @@ urlpatterns = [
     path('viewItems/<int:id>', views.viewItems, name="viewItems"),
     path('adminPage/', views.adminPage, name="adminPage"),
     path('deleteUser/<str:pk>/', views.deleteUser, name="deleteUser"),
+    path('deleteList/<str:pk>/', views.deleteList, name="deleteList"),
 ]
