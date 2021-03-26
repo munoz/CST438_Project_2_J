@@ -28,27 +28,36 @@ def index(request):
 @login_required
 def viewItems(response, id):
     ls = WishList.objects.get(id=id)
-
     form = TaskForm()
-
     if response.method == 'POST':
-        if response.POST.get("save"):
-            for item in ls.task_set.all():
-                if response.POST.get("c" + str(item.id)) == "clicked":
-                    item.complete = True
-                else:
-                    item.complete = False
-                item.save()
-        elif response.POST.get("newItem"):
-            txt = response.POST.get("new")
+        form = TaskForm(response.POST)
+        if form.is_valid():
+            n= form.cleaned_data["title"]
+            w = Task(title=n)
+            w.save()
             
-            if len(txt) > 2:
-                ls.task_set.create(text=txt, complete=False)
-            else:
-                print("invalid")
-
+            return redirect('/viewLists')
     context = {'ls':ls, 'form':form}
     return render(response, "tasks/viewItems.html", context)
+
+@login_required
+def createList(response):
+    if response.method == 'POST':
+        form = ListForm(response.POST)
+        
+        if form.is_valid():
+            n = form.cleaned_data["name"]
+            w = WishList(name=n)
+            w.save(commit=False)
+            response.user.wishlist.add(w)
+            
+            return redirect("/createList")
+
+    else:
+        form = ListForm()
+
+    context = {'form':form}
+    return render(response, 'tasks/createList.html', context)
 
 @login_required
 def updateItem(request, pk):
@@ -98,25 +107,7 @@ def viewUsers(request):
 def adminPage(request):
     return render(request, 'tasks/adminPage.html')
 
-@login_required
-def createList(response):
-    if response.method == 'POST':
-        form = ListForm(response.POST)
-        print(form.errors)
-        if form.is_valid():
-            n = form.cleaned_data["name"]
-            print(n)
-            w = WishList(name=n)
-            w.save()
-            response.user.wishlist.add(w)
-            
-            return redirect("/createList")
 
-    else:
-        form = ListForm()
-
-    context = {'form':form}
-    return render(response, 'tasks/createList.html', context)
 
 @login_required
 def viewLists(response):

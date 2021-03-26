@@ -9,7 +9,7 @@ class TaskForm(forms.ModelForm):
 
     class Meta:
         model = Task
-        fields = '__all__'
+        fields = {'title'}
 
 class ListForm(forms.ModelForm):
     name = forms.CharField(widget = forms.TextInput(attrs={'placeholder':'Add new list...'}))
