@@ -35,7 +35,7 @@ def createList(response):
         if form.is_valid():
             n = form.cleaned_data["name"]
             w = WishList(name=n)
-            w.save(commit=False)
+            w.save()
             response.user.wishlist.add(w)
             
             return redirect("/createList")
