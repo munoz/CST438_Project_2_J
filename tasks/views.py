@@ -128,3 +128,14 @@ def deleteList(request, pk):
 
     context = {'wishlist':wishlist}
     return render(request, 'tasks/deleteList.html', context)
+
+@login_required
+def deleteSelf(request, pk):
+    user = User.objects.get(id=pk)
+
+    if request.method == 'POST':
+        user.delete()
+        return redirect('/')
+
+    context = {'user':user}
+    return render(request, 'tasks/deleteSelf.html', context)

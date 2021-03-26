@@ -3,16 +3,16 @@
 
 {% block content %}
 <div class="center-column">
-    {% if user.is_authenticated%}
-      <a href="/createList">Create a wishlist</a>
-       <br>
-        <a href="/viewLists">My wishlists</a>
-         <!-- <br>
-          <a href="/viewUsers">View users</a> -->
-    {% else%}
+  {% if user.is_authenticated%}
+    <a href="/createList">Create a Wishlist</a>
+    <br>
+    <a href="/viewLists">My Wishlists</a>
+    <br>
+    <a href="{% url 'deleteSelf' user.id %}">Delete Account</a>
+  {% else%}
     <h1>Welcome to Jiminy Wishlist</h1>
     <h2>Register new account to create a Wishlist!</h2>
-    {% endif %}
+  {% endif %}
 
 
     <!-- <br>

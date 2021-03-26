@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name="list"),
+    path('/',views.index, name="list"),
     path('updateItem/<str:pk>/', views.updateItem, name="updateItem"),
     path('deleteItem/<str:pk>/', views.deleteItem, name="deleteItem"),
     path('viewUsers/', views.viewUsers, name="viewUsers"),
@@ -12,4 +13,5 @@ urlpatterns = [
     path('adminPage/', views.adminPage, name="adminPage"),
     path('deleteUser/<str:pk>/', views.deleteUser, name="deleteUser"),
     path('deleteList/<str:pk>/', views.deleteList, name="deleteList"),
+    path('deleteSelf/<str:pk>/', views.deleteSelf, name="deleteSelf"),
 ]
