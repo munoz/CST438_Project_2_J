@@ -30,7 +30,6 @@ def viewItems(response, id):
     ls = WishList.objects.get(id=id)
     form = TaskForm()
     if response.method == 'POST':
-<<<<<<< HEAD
         form = TaskForm(response.POST)
         if form.is_valid():
             n= form.cleaned_data["title"]
@@ -38,23 +37,6 @@ def viewItems(response, id):
             w.save()
             
             return redirect('/viewLists')
-=======
-        if response.POST.get("save"):
-            for item in ls.task_set.all():
-                if response.POST.get("c" + str(item.id)) == "clicked":
-                    item.complete = True
-                else:
-                    item.complete = False
-                item.save()
-        elif response.POST.get("newItem"):
-            txt = response.POST.get("new")
-
-            if len(txt) > 2:
-                ls.task_set.create(text=txt, complete=False)
-            else:
-                print("invalid")
-
->>>>>>> 3eeb41d46446598d53ad42411aebe4d600880b57
     context = {'ls':ls, 'form':form}
     return render(response, "tasks/viewItems.html", context)
 
