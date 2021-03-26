@@ -30,6 +30,7 @@ def viewItems(response, id):
     ls = WishList.objects.get(id=id)
     form = TaskForm()
     if response.method == 'POST':
+<<<<<<< HEAD
         form = TaskForm(response.POST)
         if form.is_valid():
             n= form.cleaned_data["title"]
@@ -37,6 +38,23 @@ def viewItems(response, id):
             w.save()
             
             return redirect('/viewLists')
+=======
+        if response.POST.get("save"):
+            for item in ls.task_set.all():
+                if response.POST.get("c" + str(item.id)) == "clicked":
+                    item.complete = True
+                else:
+                    item.complete = False
+                item.save()
+        elif response.POST.get("newItem"):
+            txt = response.POST.get("new")
+
+            if len(txt) > 2:
+                ls.task_set.create(text=txt, complete=False)
+            else:
+                print("invalid")
+
+>>>>>>> 3eeb41d46446598d53ad42411aebe4d600880b57
     context = {'ls':ls, 'form':form}
     return render(response, "tasks/viewItems.html", context)
 
@@ -82,7 +100,7 @@ def deleteItem(request, pk):
     if request.method == 'POST':
         item.delete()
         return redirect('/viewLists')
-        
+
     context = {'item':item}
     return render(request, 'tasks/deleteItem.html', context)
 
@@ -93,7 +111,7 @@ def deleteUser(request, pk):
     if request.method == 'POST':
         user.delete()
         return redirect('/viewUsers')
-        
+
     context = {'user':user}
     return render(request, 'tasks/deleteUser.html', context)
 
@@ -107,9 +125,43 @@ def viewUsers(request):
 def adminPage(request):
     return render(request, 'tasks/adminPage.html')
 
+<<<<<<< HEAD
+=======
+@login_required
+def createList(response):
+    if response.method == 'POST':
+        form = ListForm(response.POST)
+        print(form.errors)
+        if form.is_valid():
+            n = form.cleaned_data["name"]
+            print(n)
+            w = WishList(name=n)
+            w.save()
+            response.user.wishlist.add(w)
+
+            return redirect("/createList")
+
+    else:
+        form = ListForm()
+>>>>>>> 3eeb41d46446598d53ad42411aebe4d600880b57
 
 
 @login_required
 def viewLists(response):
     wishlist = WishList.objects
     return render(response, 'tasks/viewLists.html', {'wishlist': wishlist})
+
+@login_required
+def deleteList(request, pk):
+    print('---------- HEY HEY@@ -----------')
+    wishlist = WishList.objects.get(id=pk)
+
+    print(wishlist)
+    # wishlist = Wishlist.objects.get(id=pk)
+
+    if request.method == 'POST':
+        wishlist.delete()
+        return redirect('/viewLists')
+
+    context = {'wishlist':wishlist}
+    return render(request, 'tasks/deleteList.html', context)
