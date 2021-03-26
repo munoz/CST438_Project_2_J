@@ -107,25 +107,6 @@ def viewUsers(request):
 def adminPage(request):
     return render(request, 'tasks/adminPage.html')
 
-<<<<<<< HEAD
-=======
-@login_required
-def createList(response):
-    if response.method == 'POST':
-        form = ListForm(response.POST)
-        print(form.errors)
-        if form.is_valid():
-            n = form.cleaned_data["name"]
-            print(n)
-            w = WishList(name=n)
-            w.save()
-            response.user.wishlist.add(w)
-
-            return redirect("/createList")
-
-    else:
-        form = ListForm()
->>>>>>> 3eeb41d46446598d53ad42411aebe4d600880b57
 
 
 @login_required
